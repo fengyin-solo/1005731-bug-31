@@ -35,3 +35,70 @@ body { margin: 0; background: #f6f8fb; color: #1f2937; }
 .error-text { color: #b42318; }
 .status-legend { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 10px; font-size: 12px; color: var(--muted); }
 .legend-item { background: #eef2f7; border-radius: 999px; padding: 2px 10px; }
+
+/* 缺陷处置：等级分档徽章与状态徽章 */
+.level-badge { display: inline-block; border-radius: 4px; padding: 1px 8px; font-size: 12px; white-space: nowrap; }
+.lv-critical { background: #fee4e2; color: #b42318; }
+.lv-serious { background: #fef0c7; color: #b54708; }
+.lv-general { background: #e0f2fe; color: #0369a1; }
+.lv-missing { background: #e5e7eb; color: #6b7280; }
+.status-badge { display: inline-block; border-radius: 999px; padding: 1px 10px; font-size: 12px; white-space: nowrap; }
+.st-pending { background: #f2f4f7; color: #475467; }
+.st-doing { background: #e0eaff; color: #1d4ed8; }
+.st-done { background: #dcfae6; color: #067647; }
+.st-up { background: #fef0c7; color: #b54708; }
+.overdue-text { color: #b42318; font-weight: 600; }
+.overdue-flag { margin-left: 6px; background: #fee4e2; color: #b42318; border-radius: 4px; padding: 0 6px; font-size: 11px; }
+.muted-text { color: var(--muted); font-size: 12px; }
+.ok-text { color: #067647; }
+.warn-text { color: #b54708; }
+.error-text { color: #b42318; }
+
+/* 批量勾选条 */
+.batch-bar { display: flex; align-items: center; gap: 10px; background: #eef4ff; border: 1px solid #c7d7fe; border-radius: 8px; padding: 8px 12px; margin-bottom: 10px; font-size: 13px; }
+.batch-bar .btn { padding: 4px 10px; }
+.col-check { width: 36px; text-align: center; }
+.defect-table .tier-row td { background: #f8fafc; font-size: 12px; color: var(--muted); padding: 5px 10px; }
+.tier-tag { margin-right: 8px; font-weight: 600; }
+.row-checked { background: #f5f8ff; }
+.cell-desc { max-width: 240px; }
+
+/* 批量转派弹窗 */
+.modal-mask { position: fixed; inset: 0; background: rgba(16, 24, 40, 0.45); display: flex; align-items: center; justify-content: center; z-index: 100; padding: 24px; }
+.modal { background: #fff; border-radius: 10px; width: 560px; max-width: 100%; max-height: 90vh; display: flex; flex-direction: column; box-shadow: 0 12px 32px rgba(16, 24, 40, 0.2); }
+.modal-wide { width: 900px; }
+.modal-head { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; border-bottom: 1px solid var(--border); }
+.modal-head h3 { margin: 0; font-size: 15px; }
+.modal-body { padding: 14px 18px; overflow-y: auto; }
+.modal-foot { display: flex; justify-content: flex-end; gap: 8px; padding: 12px 18px; border-top: 1px solid var(--border); }
+.dispatch-tip { margin: 0 0 12px; font-size: 13px; }
+.dispatch-handler { margin-bottom: 10px; }
+.dispatch-handler select { width: 100%; padding: 6px 8px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; }
+.dispatch-warn { font-size: 12px; color: #b54708; background: #fffaeb; border: 1px solid #fedf89; border-radius: 6px; padding: 6px 10px; margin: 0 0 12px; }
+.dispatch-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.dispatch-col h4, .receipt-section h4 { margin: 0 0 6px; font-size: 13px; }
+.data-table.compact th, .data-table.compact td { padding: 5px 8px; font-size: 12px; }
+.receipt-section { margin-bottom: 14px; }
+
+/* 明细抽屉 */
+.drawer-mask { position: fixed; inset: 0; background: rgba(16, 24, 40, 0.35); z-index: 110; }
+.drawer { position: fixed; top: 0; right: 0; width: 400px; max-width: 92vw; height: 100vh; background: #fff; box-shadow: -8px 0 24px rgba(16, 24, 40, 0.18); display: flex; flex-direction: column; }
+.drawer-head { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; border-bottom: 1px solid var(--border); }
+.drawer-head h3 { margin: 0; font-size: 15px; }
+.drawer-body { padding: 16px 18px; overflow-y: auto; }
+.detail-list { margin: 0; }
+.detail-list div { display: flex; gap: 12px; padding: 8px 0; border-bottom: 1px dashed var(--border); font-size: 13px; }
+.detail-list dt { width: 76px; flex-shrink: 0; color: var(--muted); }
+.detail-list dd { margin: 0; }
+.handler-card { margin-top: 14px; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; background: #f8fafc; }
+.handler-card h4 { margin: 0 0 6px; font-size: 13px; }
+.handler-name { margin: 0; font-size: 14px; font-weight: 600; }
+.handler-levels { margin: 4px 0 0; font-size: 12px; color: var(--muted); }
+.drawer-note { margin-top: 12px; font-size: 12px; border-radius: 6px; padding: 6px 10px; background: #f6f8fb; }
+.drawer-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+
+/* 设备巡视待整改清单 */
+.rectify-block { margin-top: 24px; }
+.block-head { margin-bottom: 10px; }
+.block-head h3 { margin: 0 0 4px; font-size: 15px; }
+.rectify-block .stat-row { max-width: 640px; }

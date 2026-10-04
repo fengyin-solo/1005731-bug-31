@@ -32,6 +32,29 @@ export type ActionResult = {
   message: string
 }
 
+// 批量转派逐条回执：success=已转派，failed=校验通过但业务挡回，skipped=资料不齐未提交
+export type ReceiptCode = 'success' | 'failed' | 'skipped'
+
+export type DispatchReceiptItem = {
+  id: number
+  code: ReceiptCode
+  defectNo: string
+  device: string
+  level: string
+  deadline: string
+  destination: string
+  reason: string
+}
+
+export type DispatchResult = {
+  ok: boolean
+  message: string
+  items: DispatchReceiptItem[]
+  successCount: number
+  failedCount: number
+  skippedCount: number
+}
+
 export type OverviewResult = {
   cards: { label: string; value: number }[]
   modules: { name: string; created: number; pending: number; abnormal: number }[]
