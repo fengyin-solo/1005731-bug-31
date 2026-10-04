@@ -67,6 +67,37 @@
       <span>共 {{ total }} 条设备巡视记录</span>
       <span v-if="errorMessage" class="error-text">{{ errorMessage }}</span>
     </footer>
+
+    <section class="rectify-board">
+      <h3>设备巡视待整改清单</h3>
+      <p class="page-desc">来自缺陷处置模块：未消除的缺陷都在此列，批量转派后的处理人与状态同步反映。</p>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>缺陷编号</th>
+            <th>缺陷设备</th>
+            <th>缺陷等级</th>
+            <th>处理期限</th>
+            <th>处理人</th>
+            <th>缺陷状态</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="row in rectifyRows" :key="String(row.id)">
+            <td>{{ row['缺陷编号'] || '—' }}</td>
+            <td>{{ row['缺陷设备'] || '—' }}</td>
+            <td>{{ row['缺陷等级'] || '—' }}</td>
+            <td>{{ row['处理期限'] || '—' }}</td>
+            <td>{{ row['处理人'] || '—' }}</td>
+            <td>{{ row.status }}</td>
+          </tr>
+          <tr v-if="!rectifyRows.length">
+            <td colspan="6" class="empty-state">暂无待整改缺陷</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="rectify-count">共 {{ rectifyRows.length }} 条待整改</p>
+    </section>
   </section>
 </template>
 
@@ -76,6 +107,7 @@ import { computed, onMounted, ref } from 'vue'
 import {
   downloadEntries,
   listEntries,
+  listPendingRectifications,
   moduleMeta,
   runAction as applyAction,
 } from '@/api/local-service'
@@ -92,6 +124,7 @@ const total = ref(0)
 const errorMessage = ref('')
 const filters = ref<Record<string, string>>({})
 const filterFields = columns.slice(0, 3)
+const rectifyRows = ref<EntryRow[]>([])
 const statusSummary = computed(() =>
   statuses.map((status: string) => ({
     status,
@@ -128,6 +161,7 @@ function reload() {
     const payload = listEntries(meta.key, filters.value)
     rows.value = payload.items
     total.value = payload.total
+    rectifyRows.value = listPendingRectifications()
   } catch (error) {
     errorMessage.value = error instanceof Error ? error.message : '设备巡视列表读取失败'
   }
